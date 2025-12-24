@@ -48,11 +48,13 @@ class User(AbstractBaseUser):
     )
     date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     first_name = models.CharField(max_length=60, default=None)
     middle_name = models.CharField(blank=True, null=True, max_length=60, default=None)
     last_name = models.CharField(max_length=60, default=None)
-    roles = models.ManyToManyField('Role', through='RoleUser')
+    roles = models.ManyToManyField('Role', through='RoleUser', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(default=timezone.now)
     
@@ -74,14 +76,10 @@ class User(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
-
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
     
     @property
     def full_name(self):
-        # User Full Name 
-        return f"{self.first_name} {self.middle_name} {self.last_name}"
+        
+        full_name = f"{self.first_name} {self.middle_name} {self.last_name}" if self.middle_name else f"{self.first_name} {self.last_name}"
+        
+        return full_name
