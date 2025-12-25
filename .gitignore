@@ -5,7 +5,7 @@ app.egg-info
 .coverage
 htmlcov
 .cache
-.venv
+# .venv
 .env
 general.log
 .ruff_cache
