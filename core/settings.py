@@ -124,6 +124,4 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-MIGRATION_MODULES = {"apms": "apms.data.migrations"}
-
 AUTH_USER_MODEL = "apms.User"
