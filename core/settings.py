@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 AUTH_USER_MODEL = "apms.User"
+
+LOGIN_URL = '/admin/login/'
