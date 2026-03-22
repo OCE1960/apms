@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from apms.admin import apms_admin_site
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", apms_admin_site.urls),
 ]
