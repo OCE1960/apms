@@ -10,3 +10,4 @@ class APMSAdminSite(admin.AdminSite):
 
 apms_admin_site = APMSAdminSite(name="admin")
 apms_admin_site.register(models.User, app_admin.UserAdmin)
+apms_admin_site.register(models.Role, app_admin.RoleAdmin)

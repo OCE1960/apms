@@ -28,7 +28,15 @@
                         </a>
                     </li>
                 <li class="nav-item has-tree-view ">
-                    <a href="#" class="nav-link {% add_active 'admin:apms_user_changelist' exact_match=True %} {% add_active 'admin:password_change' exact_match=True %}">
+                    <a 
+                        href="#"
+                        class="
+                            nav-link
+                            {% add_active 'admin:apms_user_changelist' exact_match=True %}
+                            {% add_active 'admin:password_change' exact_match=True %}
+                            {% add_active 'admin:apms_role_changelist' exact_match=True %}
+                            "
+                    >
                         <i class="nav-icon fas fa-tools"></i> <p>Settings</p>
                         <p><i class="right fas fa-angle-left"></i>
                         </p>
@@ -37,6 +45,11 @@
                             <li class="nav-item ">
                                 <a href="{% url 'admin:apms_user_changelist' %}" class="nav-link {% add_active 'admin:apms_user_changelist' exact_match=True %}">
                                     <i class="nav-icon fas fa-users"></i> Users
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{% url 'admin:apms_role_changelist' %}" class="nav-link {% add_active 'admin:apms_role_changelist' exact_match=True %}">
+                                    <i class="nav-icon fas fa-user-tag"></i> Roles
                                 </a>
                             </li>
                         <li class="nav-item">
