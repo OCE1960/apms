@@ -8,3 +8,10 @@ class RoleUser(models.Model):
 
     def __str__(self):
         return f"RoleUser {self.pk}"
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["role", "user"], name="unique_user_role"
+            )
+        ]
