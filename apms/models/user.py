@@ -55,7 +55,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=60, default=None)
     middle_name = models.CharField(blank=True, null=True, max_length=60, default=None)
     last_name = models.CharField(max_length=60, default=None)
-    roles = models.ManyToManyField('Role', through='RoleUser')
+    roles = models.ManyToManyField('Role', through='RoleUser', related_name="users")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(default=timezone.now)
     

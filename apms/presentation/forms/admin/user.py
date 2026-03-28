@@ -4,6 +4,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
 from apms import models
+from .role_user import RoleUserInline
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
@@ -42,7 +43,7 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
     class Meta:
         model = models.User
-        fields = ["email", "password", "date_of_birth", "is_active", "is_admin", "first_name", "last_name", "roles"]
+        fields = ["email", "password", "date_of_birth", "is_active", "is_admin", "first_name", "last_name"]
 
 
 class UserAdmin(BaseUserAdmin):
@@ -78,6 +79,9 @@ class UserAdmin(BaseUserAdmin):
     ordering = ["email"]
     filter_horizontal = []
     view_on_site = True
+    inlines = [
+        RoleUserInline
+    ]
     # change_form_template = 'cms/index.html'
     
     class Media:

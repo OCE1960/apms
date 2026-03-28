@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "apms.apps.ApmsConfig",
     'adminlte3',
     'adminlte3_theme',
-    "django.contrib.admin",
+    "core.apps.CoreAdminConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
