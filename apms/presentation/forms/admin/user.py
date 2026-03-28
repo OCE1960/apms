@@ -1,3 +1,6 @@
+from django.contrib import admin
+from django.utils.html import format_html_join
+from django.utils.safestring import mark_safe
 from django import forms
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -55,10 +58,11 @@ class UserAdmin(BaseUserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     # inlines = [RoleUserInline]
-    list_display = ["first_name", "last_name", "email", "date_of_birth", "is_admin"]
+    list_display = ["first_name", "last_name", "email", "date_of_birth", "is_admin", "user_roles"]
     list_display_links = ["first_name", "last_name", "email"]
     list_filter = ["is_admin", "roles"]
     sortable_by = ["first_name", "last_name", "email", "date_of_birth"]
+    # list_select_related = ["roles"]
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
         ("Personal info", {"fields": ["first_name", "last_name", "date_of_birth"]}),
@@ -83,6 +87,9 @@ class UserAdmin(BaseUserAdmin):
         RoleUserInline
     ]
     # change_form_template = 'cms/index.html'
+
+    def user_roles(self, obj):
+        return ", ".join([role.display_name for role in obj.roles.all()])
     
     class Media:
         # css = {
@@ -90,4 +97,3 @@ class UserAdmin(BaseUserAdmin):
         # }
         # js = ["my_code.js"]
         pass
-
